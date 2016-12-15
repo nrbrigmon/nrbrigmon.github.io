@@ -1,6 +1,6 @@
 ---
 layout: post
-title: My first post to the internet
+title: For the internet
 subtitle: Jekyll is a blog-aware, static site generator in Ruby https://jekyllrb.com
 date: 2016-12-13
 author: Nate B
