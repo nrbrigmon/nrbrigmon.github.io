@@ -158,7 +158,8 @@ px      68    160    252    344    436    528    620    712    */
 ---------------------------------------------
 cols    1     2      3
 px      68    160    252    */
-@media only screen and (max-width: 767px) {
+
+@media only screen and (min-width: 491px) and (max-width: 767px) {
   /*---------------------------------------------
 					Index Start 
 -----------------------------------------------*/
@@ -398,3 +399,26 @@ px      68    160    252    344    436    */
 	Overrides styles for devices with a 
 	device-pixel-ratio of 2+, such as iPhone 4.
 -----------------------------------------------    */
+
+@media only screen and (max-width: 490px) {
+
+  .post #intro {
+    padding: 0px;
+  }
+
+  .blog-text{
+    padding: 40px;
+  }
+
+  .blog-text p {
+    font-size: 15px;
+  }
+
+  .blog-text ol {
+    font-size: 15px;
+  }
+  .blog-text li {
+    margin-top: 2px;
+  }
+
+}

@@ -39,3 +39,19 @@ img#bootstrap-override  {
   margin-left: -15px;
   margin-top: 5px;
 }
+
+.blog-text{
+  max-width: 650px; 
+  margin: 0 auto;
+}
+
+.blog-text p {
+  font-size: 18px;
+}
+
+.blog-text ol {
+  font-size: 16px;
+}
+.blog-text li {
+  margin-top: 5px;
+}
