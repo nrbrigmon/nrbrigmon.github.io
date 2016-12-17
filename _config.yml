@@ -12,8 +12,7 @@ keep_files:
   - ".git"
   - ".gitignore"
 
- gems:
-    - jekyll-maps
+
 
 # Site settings
 title: NAMaps
@@ -31,9 +30,6 @@ logo: "/assets/logo.png"
 markdown: kramdown
 
 #Google Maps API
-maps:
-    google:
-      api_key: AIzaSyD1CCIPpSsaIanWcCwgMXHu34zVLUA5qj0
 
 # Google services
 google_analytics: UA-89024077-1
