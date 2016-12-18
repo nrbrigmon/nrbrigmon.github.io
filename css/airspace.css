@@ -358,8 +358,49 @@ font header .navbar-default .navbar-nav li a:hover {
 /*--
 	Slider-work Start
 --*/
+#projects-header {
+  background: url("../imgs/projects_cover.jpg") no-repeat;
+  background-size: cover;
+  padding-top: 150px;
+  padding-bottom: 107px;
+  position: relative;
+  background-attachment: fixed;
+}
+#projects-header:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #928dab, #1f1c2c 70%);
+  opacity: 0.8;
+}
+#projects-header .block {
+  color: #E3E3E4;
+  margin: 0 auto;
+  max-width: 650px;
+  text-align: center;
+}
+#projects-header .block h1 {
+  font-weight: 100;
+  font-size: 45px;
+  letter-spacing: 6px;
+  padding-bottom: 15px;
+  margin-top: 0;
+  text-transform: capitalize;
+}
+#projects-header .block p {
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+}
+
 #global-header {
-  background: url("../imgs/slider-bg.jpg") no-repeat;
+  background: url("../imgs/blog_cover.jpg") no-repeat;
   background-size: cover;
   padding-top: 150px;
   padding-bottom: 107px;
