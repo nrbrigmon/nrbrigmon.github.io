@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Carto Maps and Census Data, part 1</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/min/waypoints.min.js"></script>
+<script src="/js/jquery.counterup.js"></script>
+<script src="/js/main.js"></script>
+<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Carto Maps and Census Data, part 1 - NAMaps</title>
+<meta property="og:title" content="Carto Maps and Census Data, part 1" />
+<meta name="description" content="How to Make Custom Census Web Maps with Carto These posts will cover a recent project I just wrapped up which involved displaying Census and EMSI data in an interactive web map with a searchable table." />
+<meta property="og:description" content="How to Make Custom Census Web Maps with Carto These posts will cover a recent project I just wrapped up which involved displaying Census and EMSI data in an interactive web map with a searchable table." />
+<link rel="canonical" href="http://localhost:4000/2016/12/17/custom-maps-and-census-data-1.html" />
+<meta property="og:url" content="http://localhost:4000/2016/12/17/custom-maps-and-census-data-1.html" />
+<meta property="og:site_name" content="NAMaps" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-12-17T00:00:00-06:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Carto Maps and Census Data, part 1",
+"datePublished": "2016-12-17T00:00:00-06:00",
+"description": "How to Make Custom Census Web Maps with Carto These posts will cover a recent project I just wrapped up which involved displaying Census and EMSI data in an interactive web map with a searchable table.",
+"url": "http://localhost:4000/2016/12/17/custom-maps-and-census-data-1.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">
+              <img id="bootstrap-override" src="/imgs/the_apollo_group.jpg" alt="Logo">
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <!-- <li><a href="/pricing">Pricing</a></li> -->
+                <li><a href="/contact">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section id="intro" style="border: 1px dotted #ddd;">
+    <div class="container">
+      <div class="row">
+        <div>
+          <div class="block blog-text">
+            <h1>Carto Maps and Census Data, part 1</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Nate B</span> on <span class="bold">December 17, 2016</span></p>
+            </div>
+            <hr />
+            <p><h3 id="how-to-make-custom-census-web-maps-with-carto">How to Make Custom Census Web Maps with Carto</h3>
+<p>These posts will cover a recent project I just wrapped up which involved displaying Census and EMSI data in an interactive web map with a searchable table.</p>
+
+<p><img src="/imgs/post-imgs/2016-12-17-img1.png" alt="image-title-here" class="img-responsive" /></p>
+
+<p class="img-caption">Finished product above.</p>
+
+<p>A lot of time went into making this map from scratch and I can’t cover everything I did in one post. So, I think what I’ll do is break this out into several parts only covering the cool parts. I apologize to my Social Science brethren, but there will be no talk of American Community Survey estimates by block group. I also won’t go over the GIS aspects of my work as that will blow this up into a book.</p>
+
+<h4 id="heres-what-ill-cover">Here’s what I’ll cover:</h4>
+
+<ol>
+  <li>Setting up a Map with Carto’s API</li>
+  <li>Adding Custom Pop-ups</li>
+  <li>Overcoming Carto’s Column Limitation</li>
+  <li>Using Javascript and with CartoSQL</li>
+  <li>Adding Custom Legends to the Map</li>
+  <li>Dynamic Data Tables</li>
+  <li>Helpful Excel Workflows for Web Development</li>
+</ol>
+
+<p>Now, let’s jump to Part 1:</p>
+<h2 id="setting-up-a-map-with-cartos-api">Setting up a Map with Carto’s API</h2>
+<p>Steps:</p>
+<ol>
+  <li>Setup Carto Account</li>
+  <li>Add Data to Carto</li>
+  <li>Setup Web Files</li>
+  <li>Connect with JavaScript</li>
+</ol>
+
+<h3 id="1-setup-carto-acount">1. Setup Carto Acount</h3>
+<p>Go to <a href="https://carto.com/signup/">Carto’s site</a> and register an account. One thing I noticed, when setting up an account for someone else, either skip the identification step OR mark yourself as a developer since I think they give you access to different UIs and Tools depending on who you identify yourself as. I tried to register someone else to Carto and found they had a completely different UI than mine, which also lacked the tools I would tell them to use.</p>
+
+<p>Hopefully, when you’re finished - it takes like two minutes - you’re UI will look like this:</p>
+
+<p><img src="/imgs/post-imgs/2016-12-17-img2.png" alt="image-title-here" class="img-responsive" /></p>
+
+<h3 id="2-add-data-to-carto">2. Add Data to Carto</h3>
+<p>OK, now hopefully you’ve got some polygons or tables with geospatial data. In my case, I used block groups from the <a href="https://www.census.gov/geo/maps-data/data/tiger.html">US Census</a>. Their site is great as you can even download files with preloaded data. I’m a <a href="http://qgis.org/en/site/">QGIS</a> guy, so I edit my shapefile, joined it with my custom data, and then did a “Save As” KML. Either way, once you have your polygons with data, add it to carto. Drag and drop it!</p>
+
+<p><img src="/imgs/post-imgs/2016-12-17-img3.png" alt="image-title-here" class="img-responsive" /></p>
+
+<p>Here, I usually delete the unneccesary columns because they just clutter the workflow. Now we have our data in Carto. Select <strong>CREATE MAP</strong> in the table view, generally at the bottom right. Now, before you go, grab two pieces of information which you can find in the browser view of your map:</p>
+
+<p><img src="/imgs/post-imgs/2016-12-17-img4.png" alt="image-title-here" class="img-responsive" /></p>
+
+<p>Your username and map ID will be important later. Copy the info and paste it somewhere safe. Now, it’s time to setup the web files.</p>
+
+<h3 id="3-setup-web-files">3. Setup Web Files</h3>
+
+<p>There exists a <strong>super</strong> easy way to make leaflet maps with QGIS, which I’ll document in another post later, but for now I’ll just cover the basics for setting up a web map.</p>
+
+<h4 id="html">HTML</h4>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+	<span class="nt">&lt;head&gt;</span>
+	    <span class="nt">&lt;title&gt;</span>Interactive Web Map<span class="nt">&lt;/title&gt;</span>
+	    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+	    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge,chrome=1"</span><span class="nt">&gt;</span>
+	    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"</span><span class="nt">&gt;</span>
+	    <span class="c">&lt;!-- CSS --&gt;</span>
+	    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.css"</span> <span class="nt">/&gt;</span>
+	    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css"</span> <span class="nt">/&gt;</span>
+	    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"customStyleSheet.css"</span> <span class="nt">/&gt;</span>
+	    <span class="c">&lt;!-- JavaScript --&gt;</span>
+	    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+	    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"customMapFunctions.js"</span> <span class="nt">/&gt;&lt;/script&gt;</span>
+	<span class="nt">&lt;/head&gt;</span>
+	<span class="nt">&lt;body&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"map"</span><span class="nt">&gt;&lt;/div&gt;</span>
+	<span class="nt">&lt;/body&gt;</span>		
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+<p>You won’t need much here. You’ll want to link to the CDNs for Leaflet and Carto. Cartodb.js already has connections to leaflet.js, so you can skip adding an extra leaflet.js link.</p>
+
+<p>In the body, all you’ll need is one div for now.</p>
+
+<h4 id="css">CSS</h4>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">html</span><span class="o">,</span>
+<span class="nt">body</span><span class="o">,</span>
+<span class="nf">#map</span> <span class="p">{</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>In the stylesheet, all you need is something to style to your map div. You can add more later.</p>
+
+<h4 id="javascript">JavaScript</h4>
+
+<p>JavaScript is where the magic happens. I’ll cover the Leaflet basics. This script below, is my starter template I’ve used on multiple projects.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">map</span><span class="p">;</span>
+
+<span class="nx">jQuery</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">){</span>
+    <span class="s1">'use strict'</span><span class="p">;</span>
+    <span class="cm">/* Setup Leaflet map specs */</span>
+    <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">'map'</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">center</span><span class="p">:</span> <span class="p">[</span><span class="mf">38.8995318</span><span class="p">,</span> <span class="o">-</span><span class="mf">77.1549959</span><span class="p">],</span>
+        <span class="na">zoom</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="na">zoomControl</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">scrollWheelZoom</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="na">maxZoom</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+        <span class="na">inertia</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">inertiaDeceleration</span><span class="p">:</span> <span class="mi">6000</span>
+    <span class="p">});</span>
+
+    <span class="cm">/* helpful if you want track map lat-lngs */</span>
+    <span class="c1">// var hash = new L.Hash(map); </span>
+
+    <span class="cm">/* Setup Leaflet map specs */</span>
+    <span class="kd">var</span> <span class="nx">additional_attrib</span> <span class="o">=</span> <span class="s1">'Template by Yours Truly&lt;br&gt;'</span><span class="p">;</span>
+
+    <span class="cm">/* Basemap layers */</span>
+    <span class="kd">var</span> <span class="nx">basemap_0</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">attribution</span><span class="p">:</span> <span class="nx">additional_attrib</span> <span class="o">+</span> <span class="s1">'&amp;copy; &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt; contributors,&lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;CC-BY-SA&lt;/a&gt;'</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">basemap_1</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">attribution</span><span class="p">:</span> <span class="nx">additional_attrib</span> <span class="o">+</span> <span class="s1">'&amp;copy; &lt;a href="http://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors, &amp;copy; &lt;a href="http://cartodb.com/attributions"&gt;CartoDB&lt;/a&gt;'</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">basemap_2</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">attribution</span><span class="p">:</span> <span class="nx">additional_attrib</span> <span class="o">+</span> <span class="s1">'&amp;copy; &lt;a href="http://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors, &amp;copy; &lt;a href="http://cartodb.com/attributions"&gt;CartoDB&lt;/a&gt;'</span>
+    <span class="p">});</span>
+    <span class="kd">var</span> <span class="nx">basemap_3</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="s1">'http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png'</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">attribution</span><span class="p">:</span> <span class="nx">additional_attrib</span> <span class="o">+</span> <span class="s1">'Map tiles by &lt;a href="http://stamen.com"&gt;Stamen Design&lt;/a&gt;, &lt;a href="http://creativecommons.org/licenses/by/3.0"&gt;CC BY 3.0&lt;/a&gt; &amp;mdash; Map data: &amp;copy; &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt; contributors,&lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;CC-BY-SA&lt;/a&gt;'</span>
+    <span class="p">});</span>
+
+    <span class="cm">/* Adds your selected Base Map */</span>
+    <span class="nx">basemap_1</span><span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+
+    <span class="cm">/* This object lets you choose various base maps for using the UI */</span>
+    <span class="kd">var</span> <span class="nx">baseMaps</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'Standard (OpenStreetMap)'</span><span class="p">:</span> <span class="nx">basemap_0</span><span class="p">,</span>
+        <span class="s1">'Positron (CartoDB)'</span><span class="p">:</span> <span class="nx">basemap_1</span><span class="p">,</span>
+        <span class="s1">'Dark Matter (CartoDB)'</span><span class="p">:</span> <span class="nx">basemap_2</span><span class="p">,</span>
+        <span class="s1">'Terrain (Stamen)'</span><span class="p">:</span> <span class="nx">basemap_3</span>
+    <span class="p">};</span>
+
+    <span class="cm">/* Leaflet control object for positioning stuff giving user interaction options*/</span>
+    <span class="nx">L</span><span class="p">.</span><span class="nx">control</span><span class="p">.</span><span class="nx">layers</span><span class="p">(</span><span class="nx">baseMaps</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span> <span class="na">collapsed</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+    <span class="nx">L</span><span class="p">.</span><span class="nx">control</span><span class="p">.</span><span class="nx">zoom</span><span class="p">({</span> <span class="na">position</span><span class="p">:</span> <span class="s1">'topright'</span> <span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre>
+</div>
+
+<p><img src="/imgs/post-imgs/2016-12-17-img5.png" alt="image-title-here" class="img-responsive" /></p>
+
+<p class="img-caption">Basic Leaflet setup.</p>
+
+<p>OK, that’s the basic Leaflet setup. Next, we’ll connect to Carto!</p>
+
+<h3 id="4-connect-with-javascript">4. Connect with JavaScript</h3>
+
+<p>The Carto setup is really easy! Remember that link you copy/pasted and placed somewhere nice and neat? Grab the id and map ID and follow the code:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">cartoUsername</span> <span class="o">=</span> <span class="s1">'nateakadino'</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">mapID</span> <span class="o">=</span> <span class="s1">'d0f9d614-c565-11e6-a877-0ee66e2c9693'</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">cartoUrl</span> <span class="o">=</span> <span class="s1">'https://'</span><span class="o">+</span><span class="nx">cartoUsername</span><span class="o">+</span><span class="s1">'.carto.com/api/v2/viz/'</span><span class="o">+</span><span class="nx">mapID</span><span class="o">+</span><span class="s1">'/viz.json'</span><span class="p">;</span>
+
+    <span class="c1">// section for adding map data</span>
+    <span class="nx">cartodb</span><span class="p">.</span><span class="nx">createLayer</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">cartoUrl</span><span class="p">)</span>
+    	<span class="c1">// this .addTo piece is giving it a Z-Index to ensure it stays on top of your base map (i.e. carto feature/bug)</span>
+        <span class="p">.</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>    
+        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'done'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'layer(s) added to carto/leaflet map...'</span><span class="p">);</span>
+
+        <span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">cartodb</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"some error occurred"</span><span class="p">);</span>
+        <span class="p">});</span>
+</code></pre>
+</div>
+<p><img src="/imgs/post-imgs/2016-12-17-img6.png" alt="image-title-here" class="img-responsive" /></p>
+
+<p class="img-caption">Boom.</p>
+
+<p>Now you’re in business! Visit the Carto dasboard to add popups, interactivity, or any kind of style you want!</p>
+
+<p>Stay tuned for the next post which will cover <em>Adding Custom Pop-ups</em></p>
+
+</p>
+
+            
+            <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+	var disqus_shortname  = '';
+	var disqus_identifier = '';
+
+    var disqus_developer = 1; // Comment out when the site is live
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//nrbrigmon-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>
+Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            
+          </div>
+        </div><!-- .col-md-7 close -->
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <!-- <li><a href="/pricing">Pricing</a></li> -->
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; Design &amp; Developed by <a href="http://www.themefisher.com">Themefisher</a>. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </body>
+</html>

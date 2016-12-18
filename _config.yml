@@ -13,7 +13,6 @@ keep_files:
   - ".gitignore"
 
 
-
 # Site settings
 title: NAMaps
 subtitle: "Explore your story through data."
@@ -23,8 +22,6 @@ subtitle: "Explore your story through data."
 # baseurl: "/" # the subpath of your site
 url: "http://nrbrigmon.github.io" # the base hostname & protocol for your site
 baseurl: ""
-cover: "/assets/cover.png"
-logo: "/assets/logo.png"
 
 # Build settings
 markdown: kramdown
@@ -33,6 +30,12 @@ markdown: kramdown
 
 # Google services
 google_analytics: UA-89024077-1
+
+gems:
+  - jekyll-seo-tag
+
+# Disqus post comments
+disqus_shortname: natebrigmon
 
 # Category descriptions (for archive pages)
 descriptions:
