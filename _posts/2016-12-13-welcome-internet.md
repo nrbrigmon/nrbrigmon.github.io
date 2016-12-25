@@ -1,8 +1,7 @@
 ---
 layout: post
 comments: false
-title: For the internet
-subtitle: Jekyll is a blog-aware, static site generator in Ruby https://jekyllrb.com
+title: Because of the Internet
 date: 2016-12-13
 author: Nate B
 ---
