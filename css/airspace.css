@@ -47,6 +47,7 @@ a:active,
 a:focus,
 a:active {
   text-decoration: none !important;
+  outline: none;
 }
 .section-title {
   margin-bottom: 70px;
@@ -498,6 +499,7 @@ img#bootstrap-override  {
 #portfolio-work .block .portfolio-menu button.current{
   background: #006093;
   color: #fff;
+  box-shadow: 0px 0px 5px -1px #006093;
 }
 #portfolio-work .block .portfolio-content ul li {
   float: left;
