@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Our Work
+active: projects
 permalink: /projects/
 ---
 
@@ -24,18 +25,19 @@ permalink: /projects/
           <div class="col-xs-12">
             <div class="block">
               <div class="portfolio-menu">
-                <ul>
-                    <li class="filter" data-filter="all">Everything</li>
-                    <li class="filter" data-filter=".Mapping">Web Map</li>
-                    <li class="filter" data-filter=".Dashboard">Data Dashboard</li>
-                    <li class="filter" data-filter=".Warehouse">Dara Warehouse</li>
-                    <li class="filter" data-filter=".Report">Report Content</li>
-                    <li class="filter" data-filter=".3D">3D Modeling</li>
-                </ul>
+                <div><h2>Filter by:</h2></div>
+                <div>
+                  <button class="btn btn-default filter-button" data-filter="all">Everything</button>
+                  <button class="btn btn-default filter-button" data-filter="Mapping">Web Map</button>
+                  <button class="btn btn-default filter-button" data-filter="Dashboard">Data Dashboard</button>
+                  <button class="btn btn-default filter-button" data-filter="Warehouse">Dara Warehouse</button>
+                  <button class="btn btn-default filter-button" data-filter="Report">Report Content</button>
+                  <button class="btn btn-default filter-button" data-filter="3D">3D Modeling</button>
+                </div>
               </div>
-              <div class="portfolio-contant">
-                <ul id="portfolio-contant-active">
-                  <li class="mix Dashboard">
+              <div class="portfolio-content">
+                <ul id="portfolio-content-active">
+                  <li class="filter Dashboard">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/Dashboard_Alabama.png" alt="launch 2035 alabama">
                       <div class="overly">
@@ -46,7 +48,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Warehouse">
+                  <li class="filter Warehouse">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/DataWarehouse_Alabama.png" alt="launch 2035 alabama">
                       <div class="overly">
@@ -57,7 +59,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Mapping">
+                  <li class="filter Mapping">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/WebMap_Alabama.png" alt="launch 2035 alabama">
                       <div class="overly">
@@ -68,7 +70,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Dashboard">
+                  <li class="filter Dashboard">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/Dashboard_Ark.png" alt="">
                       <div class="overly">
@@ -79,7 +81,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Warehouse">
+                  <li class="filter Warehouse">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/DataWarehouse_Ark.png" alt="">
                       <div class="overly">
@@ -90,7 +92,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Report">
+                  <li class="filter Report">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/Tutorials_Ark.png" alt="">
                       <div class="overly">
@@ -101,7 +103,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Mapping">
+                  <li class="filter Mapping">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/WebMap_Ark.png" alt="">
                       <div class="overly">
@@ -112,7 +114,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix 3D">
+                  <li class="filter 3D">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/3D_CityEngine.png" alt="">
                       <div class="overly">
@@ -123,7 +125,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Mapping">
+                  <li class="filter Mapping">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/WebMap_Austin.png" alt="">
                       <div class="overly">
@@ -134,7 +136,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix 3D">
+                  <li class="filter 3D">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/3D_CesiumJS.png" alt="">
                       <div class="overly">
@@ -145,7 +147,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Report">
+                  <li class="filter Report">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/Report_AustinChamber.png" alt="">
                       <div class="overly">
@@ -156,7 +158,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Report">
+                  <li class="filter Report">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/Report_MobilityATX.png" alt="">
                       <div class="overly">
@@ -167,7 +169,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Mapping">
+                  <li class="filter Mapping">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/WebMap_San_Antonio.png" alt="">
                       <div class="overly">
@@ -178,7 +180,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix Mapping">
+                  <li class="filter Mapping">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/WebMap_Sonoma.png" alt="">
                       <div class="overly">
@@ -190,7 +192,7 @@ permalink: /projects/
                       </div>
                     </a>
                   </li>
-                  <li class="mix 3D">
+                  <li class="filter 3D">
                     <a href="#">
                       <img src="{{ site.baseurl }}/imgs/portfolio/3D_DrippingSprings.png" alt="">
                       <div class="overly">
