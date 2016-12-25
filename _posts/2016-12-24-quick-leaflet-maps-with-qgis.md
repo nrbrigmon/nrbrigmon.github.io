@@ -9,9 +9,9 @@ author: Nate B
 
 ### 5 Minute Interactive Web Maps with QGIS
 
-As someone who used to work alone and couldn't afford expensive business licenses supported by large organizations, I *love* open source software! QGIS is my numero uno. I've been using QGIS for about two years now and it's amazing to see the progress being made.
+As someone who used to work with a small team and couldn't afford expensive business licenses supported by large organizations, I *love* open source software! QGIS is my numero uno. I've been using QGIS for about two years now and it's amazing to see the progress being made.
 
-If you're in the GIS field and you've never tried QGIS, I suggest you do. If you are looking to get your feet wet, this tutorial will walk you through how to make an interactive web map using leaflet in less than 5 minutes!
+If you're in the GIS field and you've never tried QGIS, I suggest you do. If you are looking to get your feet wet, this tutorial will walk you through how to make an interactive web map using [Leaflet][3] in less than 5 minutes!
 
 Here's what we'll be making:
 
@@ -113,7 +113,7 @@ Tons of great plugins out there btw (e.g. MMQGIS). Next, make sure it's visible.
 
 ![custom-formatted-popups](/imgs/post-imgs/2016-12-24/2016-12-24-img12.png){:class="img-responsive"}
 
-QGIS2Leaf
+qgis2Leaf
 {: .img-caption }
 
 If it is, move on. If not, troubleshoot. Right-click the toolbar and make sure there is a toolbar selected called "Plugins Toolbar".
@@ -123,7 +123,7 @@ If it is, move on. If not, troubleshoot. Right-click the toolbar and make sure t
 Plugins Toolbar
 {: .img-caption }
 
-### 3. Use Magic Plug-In
+### 3. Use qgis2leaf Plug-In
 
 Click the Icon. Setup the options properly according to the image below.
 
@@ -139,7 +139,7 @@ Export Setup.
 
 Then click Export.
 
-### 4. view map
+### 4. View Your Map
 
 Congratulations. You've made a map in five minutes. To view your five minutes of greatness, go to the folder's location and open your index.html file with a web browser of your choice.
 
