@@ -66,7 +66,8 @@ a:active {
 --*/
 header {
   background: #fff;
-  padding: 20px 0;
+  padding: 20px 0;    
+  box-shadow: 1px 1px 3px #ccc;
 }
 header .navbar {
   margin-bottom: 0px;
@@ -565,7 +566,7 @@ font header .navbar-default .navbar-nav li a:hover {
 #portfolio-work .block .portfolio-contant .position-center {
   position: absolute;
   top: 50%;
-  left: 10%;
+  padding: 5px;
   -webkit-transform: translate(0%, 50%);
   -moz-transform: translate(0%, 50%);
   -ms-transform: translate(0%, 50%);

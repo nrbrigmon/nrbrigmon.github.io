@@ -21,7 +21,7 @@ My code of choice *in* a particular order:
 I live in Austin with a dog named [Apollo][atxapollogram] and I play soccer for an awesome [club][atxunited]. I won't write about them, but just so you know! 
 
 ### About My Work
-I built a few web maps, dashboards, online tools, and data repositories for governments, non-profits, and small businesses and, after some feedback, decided to take my show on the road! The Apollo Group is the name of the show!
+I built a few web maps, dashboards, online tools, and data repositories for governments, non-profits, and small businesses and, after some feedback, decided to take my show on the road! The NRB Consulting Group is the name of the show!
 
 
 [atxapollogram]: https://www.instagram.com/atxapollogram/
