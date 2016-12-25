@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Carto Maps and Census Data, part 1</title>
+<title>Get Started With Carto</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -31,10 +31,10 @@
 <script src="/js/jquery.counterup.js"></script>
 <script src="/js/main.js"></script>
 <!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Carto Maps and Census Data, part 1 - NRB Consulting</title>
-<meta property="og:title" content="Carto Maps and Census Data, part 1" />
-<meta name="description" content="How to Make Custom Census Web Maps with Carto These posts will cover a recent project I just wrapped up which involved displaying Census and EMSI data in an interactive web map with a searchable table." />
-<meta property="og:description" content="How to Make Custom Census Web Maps with Carto These posts will cover a recent project I just wrapped up which involved displaying Census and EMSI data in an interactive web map with a searchable table." />
+<title>Get Started With Carto - NRB Consulting</title>
+<meta property="og:title" content="Get Started With Carto" />
+<meta name="description" content="How to Make Interactive Maps With Carto" />
+<meta property="og:description" content="How to Make Interactive Maps With Carto" />
 <link rel="canonical" href="http://localhost:4000/2016/12/17/custom-maps-and-census-data-1.html" />
 <meta property="og:url" content="http://localhost:4000/2016/12/17/custom-maps-and-census-data-1.html" />
 <meta property="og:site_name" content="NRB Consulting" />
@@ -43,9 +43,9 @@
 <script type="application/ld+json">
 {"@context": "http://schema.org",
 "@type": "BlogPosting",
-"headline": "Carto Maps and Census Data, part 1",
+"headline": "Get Started With Carto",
 "datePublished": "2016-12-17T00:00:00-06:00",
-"description": "How to Make Custom Census Web Maps with Carto These posts will cover a recent project I just wrapped up which involved displaying Census and EMSI data in an interactive web map with a searchable table.",
+"description": "How to Make Interactive Maps With Carto",
 "url": "http://localhost:4000/2016/12/17/custom-maps-and-census-data-1.html"}</script>
 <!-- End Jekyll SEO tag -->
 
@@ -101,33 +101,23 @@
       <div class="row">
         <div>
           <div class="block blog-text">
-            <h1>Carto Maps and Census Data, part 1</h1>
+            <h1>Get Started With Carto</h1>
             <div class="post-info-wrapper">
               <p class="italic">By <span class="bold">Nate B</span> on <span class="bold">December 17, 2016</span></p>
             </div>
             <hr />
-            <p><h3 id="how-to-make-custom-census-web-maps-with-carto">How to Make Custom Census Web Maps with Carto</h3>
-<p>These posts will cover a recent project I just wrapped up which involved displaying Census and EMSI data in an interactive web map with a searchable table.</p>
+            <p><h3 id="how-to-make-interactive-maps-with-carto">How to Make Interactive Maps With Carto</h3>
 
-<p><img src="/imgs/post-imgs/2016-12-17-img1.png" alt="image-title-here" class="img-responsive" /></p>
+<p>I recently just finished a web map I made for a client and I really enjoyed using the tools available from Carto. Here’s a look at the finished product:</p>
+
+<p><img src="/imgs/post-imgs/2016-12-17/2016-12-17-img1.png" alt="image-title-here" class="img-responsive" /></p>
 
 <p class="img-caption">Finished product above.</p>
 
-<p>A lot of time went into making this map from scratch and I can’t cover everything I did in one post. So, I think what I’ll do is break this out into several parts only covering the cool parts. I apologize to my Social Science brethren, but there will be no talk of American Community Survey estimates by block group. I also won’t go over the GIS aspects of my work as that will blow this up into a book.</p>
+<p>A lot of time went into making this map from scratch and I can’t cover everything I did in one post. What I’ll do is go over the very basic steps to get started and then you can check out the documentation on Carto’s website to continue onward!</p>
 
-<h4 id="heres-what-ill-cover">Here’s what I’ll cover:</h4>
+<p>So, let’s get started!</p>
 
-<ol>
-  <li>Setting up a Map with Carto’s API</li>
-  <li>Adding Custom Pop-ups</li>
-  <li>Overcoming Carto’s Column Limitation</li>
-  <li>Using Javascript and with CartoSQL</li>
-  <li>Adding Custom Legends to the Map</li>
-  <li>Dynamic Data Tables</li>
-  <li>Helpful Excel Workflows for Web Development</li>
-</ol>
-
-<p>Now, let’s jump to Part 1:</p>
 <h2 id="setting-up-a-map-with-cartos-api">Setting up a Map with Carto’s API</h2>
 <p>Steps:</p>
 <ol>
@@ -142,16 +132,16 @@
 
 <p>Hopefully, when you’re finished - it takes like two minutes - you’re UI will look like this:</p>
 
-<p><img src="/imgs/post-imgs/2016-12-17-img2.png" alt="image-title-here" class="img-responsive" /></p>
+<p><img src="/imgs/post-imgs/2016-12-17/2016-12-17-img2.png" alt="image-title-here" class="img-responsive" /></p>
 
 <h3 id="2-add-data-to-carto">2. Add Data to Carto</h3>
 <p>OK, now hopefully you’ve got some polygons or tables with geospatial data. In my case, I used block groups from the <a href="https://www.census.gov/geo/maps-data/data/tiger.html">US Census</a>. Their site is great as you can even download files with preloaded data. I’m a <a href="http://qgis.org/en/site/">QGIS</a> guy, so I edit my shapefile, joined it with my custom data, and then did a “Save As” KML. Either way, once you have your polygons with data, add it to carto. Drag and drop it!</p>
 
-<p><img src="/imgs/post-imgs/2016-12-17-img3.png" alt="image-title-here" class="img-responsive" /></p>
+<p><img src="/imgs/post-imgs/2016-12-17/2016-12-17-img3.png" alt="image-title-here" class="img-responsive" /></p>
 
 <p>Here, I usually delete the unneccesary columns because they just clutter the workflow. Now we have our data in Carto. Select <strong>CREATE MAP</strong> in the table view, generally at the bottom right. Now, before you go, grab two pieces of information which you can find in the browser view of your map:</p>
 
-<p><img src="/imgs/post-imgs/2016-12-17-img4.png" alt="image-title-here" class="img-responsive" /></p>
+<p><img src="/imgs/post-imgs/2016-12-17/2016-12-17-img4.png" alt="image-title-here" class="img-responsive" /></p>
 
 <p>Your username and map ID will be important later. Copy the info and paste it somewhere safe. Now, it’s time to setup the web files.</p>
 
@@ -258,7 +248,7 @@
 </code></pre>
 </div>
 
-<p><img src="/imgs/post-imgs/2016-12-17-img5.png" alt="image-title-here" class="img-responsive" /></p>
+<p><img src="/imgs/post-imgs/2016-12-17/2016-12-17-img5.png" alt="image-title-here" class="img-responsive" /></p>
 
 <p class="img-caption">Basic Leaflet setup.</p>
 
@@ -285,13 +275,11 @@
         <span class="p">});</span>
 </code></pre>
 </div>
-<p><img src="/imgs/post-imgs/2016-12-17-img6.png" alt="image-title-here" class="img-responsive" /></p>
+<p><img src="/imgs/post-imgs/2016-12-17/2016-12-17-img6.png" alt="image-title-here" class="img-responsive" /></p>
 
 <p class="img-caption">Boom.</p>
 
-<p>Now you’re in business! Visit the Carto dasboard to add popups, interactivity, or any kind of style you want!</p>
-
-<p>Stay tuned for the next post which will cover <em>Adding Custom Pop-ups</em></p>
+<p>Now you’re in business! Visit the Carto dasboard to add popups, interactivity, or any kind of style you want! Their docs are pretty good compared to many libraries.</p>
 
 </p>
 

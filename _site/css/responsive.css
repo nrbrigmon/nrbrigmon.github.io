@@ -420,8 +420,5 @@ px      68    160    252    344    436    */
   .blog-text li {
     margin-top: 2px;
   }
-  #intro .block img {
-      padding-left: 0px;
-      width: 90%;
-  }
+
 }

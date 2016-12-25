@@ -1,34 +1,25 @@
 ---
 layout: post
 comments: true
-title: Carto Maps and Census Data, part 1 
+title: Get Started With Carto
 tags: maps census carto table
 date: 2016-12-17
 author: Nate B
 ---
 
-### How to Make Custom Census Web Maps with Carto
-These posts will cover a recent project I just wrapped up which involved displaying Census and EMSI data in an interactive web map with a searchable table.
+### How to Make Interactive Maps With Carto
 
-![image-title-here](/imgs/post-imgs/2016-12-17-img1.png){:class="img-responsive"}
+I recently just finished a web map I made for a client and I really enjoyed using the tools available from Carto. Here's a look at the finished product:
+
+![image-title-here](/imgs/post-imgs/2016-12-17/2016-12-17-img1.png){:class="img-responsive"}
 
 Finished product above. 
 {: .img-caption }
 
-A lot of time went into making this map from scratch and I can't cover everything I did in one post. So, I think what I'll do is break this out into several parts only covering the cool parts. I apologize to my Social Science brethren, but there will be no talk of American Community Survey estimates by block group. I also won't go over the GIS aspects of my work as that will blow this up into a book.
+A lot of time went into making this map from scratch and I can't cover everything I did in one post. What I'll do is go over the very basic steps to get started and then you can check out the documentation on Carto's website to continue onward!
 
+So, let's get started!
 
-#### Here's what I'll cover:
-
-1. Setting up a Map with Carto's API
-2. Adding Custom Pop-ups
-3. Overcoming Carto's Column Limitation
-3. Using Javascript and with CartoSQL 
-4. Adding Custom Legends to the Map
-5. Dynamic Data Tables
-6. Helpful Excel Workflows for Web Development
-
-Now, let's jump to Part 1:
 ## Setting up a Map with Carto's API
 Steps:
 1. Setup Carto Account
@@ -41,16 +32,16 @@ Go to [Carto's site][1] and register an account. One thing I noticed, when setti
 
 Hopefully, when you're finished - it takes like two minutes - you're UI will look like this:
 
-![image-title-here](/imgs/post-imgs/2016-12-17-img2.png){:class="img-responsive"}
+![image-title-here](/imgs/post-imgs/2016-12-17/2016-12-17-img2.png){:class="img-responsive"}
 
 ### 2. Add Data to Carto
 OK, now hopefully you've got some polygons or tables with geospatial data. In my case, I used block groups from the [US Census][2]. Their site is great as you can even download files with preloaded data. I'm a [QGIS][3] guy, so I edit my shapefile, joined it with my custom data, and then did a "Save As" KML. Either way, once you have your polygons with data, add it to carto. Drag and drop it!
 
-![image-title-here](/imgs/post-imgs/2016-12-17-img3.png){:class="img-responsive"}
+![image-title-here](/imgs/post-imgs/2016-12-17/2016-12-17-img3.png){:class="img-responsive"}
 
 Here, I usually delete the unneccesary columns because they just clutter the workflow. Now we have our data in Carto. Select **CREATE MAP** in the table view, generally at the bottom right. Now, before you go, grab two pieces of information which you can find in the browser view of your map:
 
-![image-title-here](/imgs/post-imgs/2016-12-17-img4.png){:class="img-responsive"}
+![image-title-here](/imgs/post-imgs/2016-12-17/2016-12-17-img4.png){:class="img-responsive"}
 
 Your username and map ID will be important later. Copy the info and paste it somewhere safe. Now, it's time to setup the web files.
 
@@ -157,7 +148,7 @@ jQuery(document).ready(function($){
 
 ~~~
 
-![image-title-here](/imgs/post-imgs/2016-12-17-img5.png){:class="img-responsive"}
+![image-title-here](/imgs/post-imgs/2016-12-17/2016-12-17-img5.png){:class="img-responsive"}
 
 Basic Leaflet setup. 
 {: .img-caption }
@@ -185,14 +176,13 @@ The Carto setup is really easy! Remember that link you copy/pasted and placed so
             cartodb.log.log("some error occurred");
         });
 ~~~
-![image-title-here](/imgs/post-imgs/2016-12-17-img6.png){:class="img-responsive"}
+![image-title-here](/imgs/post-imgs/2016-12-17/2016-12-17-img6.png){:class="img-responsive"}
 
 Boom.
 {: .img-caption }
 
-Now you're in business! Visit the Carto dasboard to add popups, interactivity, or any kind of style you want!
+Now you're in business! Visit the Carto dasboard to add popups, interactivity, or any kind of style you want! Their docs are pretty good compared to many libraries.
 
-Stay tuned for the next post which will cover *Adding Custom Pop-ups*
 
 [1]:https://carto.com/signup/
 [2]:https://www.census.gov/geo/maps-data/data/tiger.html 
