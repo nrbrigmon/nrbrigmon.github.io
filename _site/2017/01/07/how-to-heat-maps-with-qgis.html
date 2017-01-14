@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>How To Heat Maps in QGIS</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/min/waypoints.min.js"></script>
+<script src="/js/jquery.counterup.js"></script>
+<script src="/js/main.js"></script>
+<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>How To Heat Maps in QGIS - NRB Consulting</title>
+<meta property="og:title" content="How To Heat Maps in QGIS" />
+<meta name="description" content="How To Make Heat Maps in QGIS" />
+<meta property="og:description" content="How To Make Heat Maps in QGIS" />
+<link rel="canonical" href="http://localhost:4000/2017/01/07/how-to-heat-maps-with-qgis.html" />
+<meta property="og:url" content="http://localhost:4000/2017/01/07/how-to-heat-maps-with-qgis.html" />
+<meta property="og:site_name" content="NRB Consulting" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-01-07T00:00:00-06:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "How To Heat Maps in QGIS",
+"datePublished": "2017-01-07T00:00:00-06:00",
+"description": "How To Make Heat Maps in QGIS",
+"url": "http://localhost:4000/2017/01/07/how-to-heat-maps-with-qgis.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">
+              <img id="bootstrap-override" src="/imgs/stacked-logo-2016-12-17.png" alt="Logo">
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                    
+                <li><a href="/">Home</a></li>
+                    
+                    
+                <li><a href="/projects">Projects</a></li>
+                    
+                    
+                <li><a href="/blog">Blog</a></li>
+                    
+                <!-- <li><a href="/pricing">Pricing</a></li> -->
+                    
+                <li><a href="/contact">Contact</a></li>
+                    
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section id="intro" style="border: 1px dotted #ddd;">
+    <div class="container">
+      <div class="row">
+        <div>
+          <div class="block blog-text">
+            <h1>How To Heat Maps in QGIS</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Nate B</span> on <span class="bold">January 7, 2017</span></p>
+            </div>
+            <hr />
+            <p><h3 id="how-to-make-heat-maps-in-qgis">How To Make Heat Maps in QGIS</h3>
+
+<p>Heat maps are really quick and easy ways to identify hot spots across an area. I don’t feel I need to go into detail, but I’m always amazed that many clients unfamiliar with mapping forget they exist. This tutorial will show how to make a simple one in QGIS while avoiding some of the common style pitfalls.</p>
+
+<p>Here’s what we’ll be making:</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img0.jpeg" alt="heat-map" class="img-responsive" /></p>
+
+<p class="img-caption">Finished product above.</p>
+
+<p>To make this map, we are going to walk through the process of downloading data, cleaning it, and then setting it up for production. To make it interesting, we are going to map where Austin, TX loses most of its pets!</p>
+
+<h2 id="mapping-where-austin-loses-pets">Mapping Where Austin Loses Pets</h2>
+
+<h3 id="1-getting-the-data">1. Getting the Data</h3>
+
+<p>You can choose any dataset you want when following along, but it would be helpful to work with the same dataset. Let’s get our data from the City of Austin’s <a href="https://data.austintexas.gov/">Open Data portal</a>. The portal provides great access to a number of different local datasets.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img1.png" alt="data-portal" class="img-responsive" /></p>
+
+<p class="img-caption">Austin’s Open Data Portal</p>
+
+<p>Now find “Austin’s Found Pets Map” by either going to the <a href="https://data.austintexas.gov/browse?sortBy=most_accessed">Top 10 Searches Page</a>, using the search bar, or click <a href="https://data.austintexas.gov/Government/Austin-Animal-Center-Found-Pets-Map/hye6-gvq2">this link</a>.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img2.png" alt="austins-pets" class="img-responsive" /></p>
+
+<p class="img-caption">Austin’s Found Pets Map</p>
+
+<p>The open data portal provides a lot of cool features, but we just want to extract our data and get out of here. To extract, click Export on the top right of the page and then choose: CSV for Excel to get a table.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img3.png" alt="export-data" class="img-responsive img-medium" /></p>
+
+<p class="img-caption">Exporting data</p>
+
+<p>Once it’s done downloading, we have our data, but - like any project - we have to prep!</p>
+
+<h3 id="2-cleaning-the-dataexcel-tricks">2. Cleaning the Data/Excel Tricks</h3>
+
+<p>Open up the dataset in your table viewer of choice. If you don’t have access to Excel, get <a href="https://www.libreoffice.org/">LibreOffice</a>. It’s free, pretty darn good, and a lot of the functions work the same on both.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img4.png" alt="excel-data" class="img-responsive" /></p>
+
+<p class="img-caption">Tabular data</p>
+
+<p>You may notice this data has a “Found Location” column that has both address and latitude/longitude embedded inside of it. That isn’t helpful, but thanks to Excel, there are some simple ways to extract what we need!</p>
+
+<p>Our goal is to extract only the information within the parentheses and between the commas, then place it into new columns.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img5.png" alt="extracting-data" class="img-responsive" /></p>
+
+<p class="img-caption">Extracting data</p>
+
+<p>Here’s how we plan to do this through excel, using the first column as our template…</p>
+
+<ol>
+  <li>If no parentheses, pass</li>
+</ol>
+
+<pre><code class="language-excel">=IF(ISNUMBER(SEARCH("(",B2)),&lt;&lt;&lt;ACTION&gt;&gt;&gt;,&lt;&lt;&lt;N/A&gt;&gt;&gt;)
+</code></pre>
+<p>Explanation: ISNUMBER acts <em>kind of</em> like the IndexOf function in JavaScript. If it finds our string it returns true, if not - false.</p>
+
+<ol>
+  <li>If parentheses, extract from the comma “,” to the last parenthesis. So, «ACTION» becomes:</li>
+</ol>
+
+<pre><code class="language-excel">=MID(B2,FIND("(",B2,1)+1,FIND(",",B2,1)-1-FIND("(",B2,1))
+</code></pre>
+<p>Explanation: MID grabs pieces of the cell depending on the position we want. We start with the position of the “(“, the measure the length from “(“ to “,” to get our data. the +1 and -1 are to make our selection exclusive of the “(“ and “,”.</p>
+
+<ol>
+  <li>Trim to remove white space</li>
+</ol>
+
+<pre><code class="language-excel">=TRIM(&lt;&lt;ACTION&gt;&gt;)
+</code></pre>
+<p>Explanation: Sometimes our data isn’t perfect and may include whitespace. This function ensures we get rid of it.</p>
+
+<ol>
+  <li>Putting it all together:</li>
+</ol>
+
+<pre><code class="language-excel">=IF(ISNUMBER(SEARCH("(",B2)),TRIM(MID(B2,FIND("(",B2,1)+1,FIND(",",B2,1)-1-FIND("(",B2,1))),"")
+</code></pre>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img6.png" alt="exceling-data" class="img-responsive" /></p>
+
+<p class="img-caption">Our fabulous Excel function</p>
+
+<p>So, we’ll create a Longitude and Latitude column and use our cool function to parse the data. Obviously, for the Latitude column, we wil swap out “(“ for “,” and change “,” to “)”.</p>
+
+<p>Once we have our data, save the CSV and open QGIS!</p>
+
+<p><strong><em>UPDATE:</em></strong> I noticed that QGIS has a hard time reading CSVs that come from EXCEL. So, when you finish - download LibreOffice! Open it up and copy-paste the contents of your Excel file into a LibreOffice file and save it as a Text CSV. Then, it will be QGIS-readable. Strange bug!</p>
+
+<h3 id="3-mapping-lost-pets">3. Mapping Lost Pets</h3>
+
+<p>To add any kind of data to the viewer in QGIS, you use the buttons on the left-hand panel of the viewer. To add a delimited text file, click the appropriate button:</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img7.png" alt="import-button" class="img-responsive img-medium" /></p>
+
+<p class="img-caption">Import TXT/CSV Button</p>
+
+<p>You will know if the import is going well if you can see the column and row information at the bottom of the importer window.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img8.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Importing Tabular Data</p>
+
+<p>Also, important to note: “X field” should hold Latitude data and “Y field” should hold Longitude data. Once everything looks good, click OK.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img9.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">View of our Data</p>
+
+<p>By now you should be seeing a various points on the canvas. This doesn’t really help you understand the locations very well, so we will need context. The best way to get context is by adding a Base Map. If you don’t already have Base Maps, you will need the OpenLayers QGIS Plugin. So, let’s go ahead and get that plus our Heat Map Plugin which we’ll need later.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img10.png" alt="tabular-data" class="img-responsive img-medium" /></p>
+
+<p class="img-caption">Getting Plugins</p>
+
+<p>In the menu bar, select Plugins and then “Manage and Install Plugins”. This will bring up our Plugin Manager. Type in and download/install both the Heatmap and OpenLayers plugin.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img11.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Plugin Manager</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img12.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Plugin Manager</p>
+
+<p>One of the best things about QGIS is the ease of installing and using their plugins. Once you’ve downloaded the two above, you will notice some of your menu options have changed. Go ahead and add your base map of choice.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img13.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Adding a base map</p>
+
+<p>I always find analyzing data with a base map makes an immediate improvement.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img14.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Putting your data in context</p>
+
+<p>Now let’s make the heat map…</p>
+
+<h3 id="4-creating-the-heat-map">4. Creating the Heat Map</h3>
+
+<p>With the new heat map plugin, this process is a snap. In the menu, go to Raster, Heatmap, Heatmap.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img15.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Heatmap options</p>
+
+<p>It will bring up the Heatmap window.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img16.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Heatmap options</p>
+
+<p>When you are filling in these options experiment! Kernel shape, Output format, Radius, Cell size, etc. I’ve found that I usually make 4 or 5 attempts before I get what I want. And because this process takes only 15 seconds, it’s not hard to repeat.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img17.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Heatmap!</p>
+
+<p>When you first map it, it will be a grey scale raster. We want to make this a bit prettier, no? Right-click on your raster and click Properties.</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img18.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Heatmap options</p>
+
+<p>I’ve found the key to good heatmaps is subtle transparency and a good color scale. Again, experiment! What I do is make the lowest levels increasingly transparent. Just follow along with the remaining screenshots and you are done!</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img19.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Change Render type to Singleband pseudocolor</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img20.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Experiment with good spectrums</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img21.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Make the very bottom end of the spectrum very transparent</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img22.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Make the second to last data class a little transparent as well</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img23.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Add transparency to the entire layer</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img24.png" alt="tabular-data" class="img-responsive" /></p>
+
+<p class="img-caption">Experiment with base maps!</p>
+
+<p><img src="/imgs/post-imgs/2017-01-07/2017-01-07-img25.png" alt="tabular-data" class="img-responsive img-medium" /></p>
+
+<p class="img-caption">Save as an Image or use the Print Composer and you’re done!</p>
+
+</p>
+
+            
+            <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+	var disqus_shortname  = '';
+	var disqus_identifier = '';
+
+    var disqus_developer = 1; // Comment out when the site is live
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//nrbrigmon-github-io.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>
+Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+
+            
+          </div>
+        </div><!-- .col-md-7 close -->
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <!-- <li><a href="/pricing">Pricing</a></li> -->
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; Design &amp; Developed by <a href="http://www.themefisher.com">Themefisher</a>. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </body>
+</html>

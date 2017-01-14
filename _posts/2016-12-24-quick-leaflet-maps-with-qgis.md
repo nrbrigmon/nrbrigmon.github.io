@@ -20,7 +20,7 @@ Here's what we'll be making:
 Finished product above. 
 {: .img-caption }
 
-Before we get started, it will be helpful to work with the same dataset together. Let's get our data from the US Census. Their [Maps & Data][1] page provides access to a number of different geographies with selected economic and demographic data.
+Before we get started, it will be helpful to work with the same dataset. Let's get our data from the US Census. Their [Maps & Data][1] page provides access to a number of different geographies with selected economic and demographic data.
 
 ![Tiger Data](/imgs/post-imgs/2016-12-24/2016-12-24-img1.png){:class="img-responsive"}
 
