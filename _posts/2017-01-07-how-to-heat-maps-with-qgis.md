@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: How To Heat Maps in QGIS 
+title: How To Make Heat Maps in QGIS 
 tags: heat maps census spatial analysis
 date: 2017-01-07
 author: Nate B
