@@ -3,6 +3,7 @@
  * To find the original style.css that ships with Airspace, read airspace.css
  *
  */
+#tableOptions td{ padding: 6px}
 
  .italic {
    font-style: italic;
